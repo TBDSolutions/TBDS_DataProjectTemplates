@@ -1,0 +1,374 @@
+---
+title: "Data Science Procedure"
+subtitle: "Data Receipt & Governance"
+output:
+  html_document:
+    df_print: paged
+    self_contained: yes
+    theme: spacelab
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  github_document: default
+  word_document:
+    reference_docx: ../www/word_style_temp_1.docx
+    toc: yes
+    toc_depth: 2
+  pdf_document: default
+    
+---
+
+[comment]: #Knit setup
+```{r setup, warning = F, message = F, include=FALSE, echo=FALSE}
+
+knitr::opts_chunk$set(
+
+  echo = F, warning = F, message = F
+
+)
+```
+[comment]:#knit package and data file loading
+```{r load}
+
+```
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
+
+```
+
+
+[comment]:#DOCUMENT BEGIN
+
+#
+
+
+**Purpose:**
+To provide an *reference* for **data receipt** and **data governance** processes and practices for the TBD Solutions data science team.  This document is not intended to be "filled-out" like a template; only referenced.  Use the **DSR_framework** template to document project items.  See the [Data Science Document Guide](#dsdg) for more on information on data science team documents.
+
+<br>
+
+
+
+#Data Receipt  
+
+
+##Receipt Type {.tabset .tabset-fade}
+
+###Flat Files
+
+
+
+1. Request data from client (if needed)
+2. Receive secure email from 
+3. Save the file to JH OneDrive in appropriate project folder (create if needed):
+4. New project?
+    + Yes *(long-term project)*:load the data to TBDS SQL server
+    + Yes *(short project)*: load data directly to R
+    + No *(long-term project)*: if data contains previous timepoints, overwrite existing table, otherwise append
+    + No *(short-term project)*: update existing Master.feather file 
+
+
+###Client DB
+
+1. Request access to database (if needed)
+2. Determine if connection scripts are needed by client and develop connection based on the [connection instructions](#connection)
+3. Determine an update schedule for the data set and document in the project framework document.  
+
+##Data Connection Method {#connection}
+
+* Will the script be shared with the client?
+    + Yes: Create in SQL
+    + No: Create in R or SQL; whichever will take less time
+
+
+## TBD DB Naming Conventions {.tabset .tabset-fade}
+
+### Databases
+
+### Tables
+
+### Columns
+
+### Indexes & Views
+
+When should we create these?
+
+
+
+
+<br>
+--- 
+
+
+
+#Data Governance  {.tabset .tabset-fade}
+
+##Application Workspaces {.tabset .tabset-fade .tabset-pills}
+
+###**Naming:** type/source_action_customlabel
+
+* Scripts should be numbered in a way to make it clear what order to run them.  
+* Scripts required to run or deploy the app must be sourced in the run.R file.
+* prep steps (i.e. calcs and transformations) may be iterative therefore numbering is important for transform steps
+* Other files in other areas such as the *analyses* folder may have elements used in these files, but are not run on their own.
+
+<br>
+
+*see the* [prep_dev](#prep) *section and the* (#read) *section for more on naming*
+
+<br>
+
+###**General Order (App updates):**
+*(documented officialy for each application in the run_app script)*
+
+1. read.R (Read folder)
+2. clean_ (Prep folder)
+3. scrub_ *(this should be last step in prep process in most cases)*
+4. scrubd_ *(not an official name, but happens as intermediate until incorporated into app; additional clean step with scrubbed data)*
+5. read_load.R (Read folder)
+6. read_connect.R (Read Folder)
+
+<br>
+
+Once these steps hve been completed the application can be run, deployed or ad-hoc analyses can be created.
+
+<br>
+
+###**Housekeeping:**
+*housekeeping* IS NOT a separate script, it is at the end of **ALL SCRIPTS**
+  * Remove unwanted variables and files from the workspace
+
+
+
+##Folder Structure Overview {.tabset .tabset-fade}
+
+###Level 1 Files {.tabset .tabset-fade .tabset-pills}
+
+####Global.R
+
+* Package loading
+* Functions
+* Variable definitions
+* Theme and palate setup
+
+
+
+####ui.R
+* Slots for anything visible in the application
+
+
+
+####server.R
+* Reactive data frames and functions
+* Fill the slots
+
+
+
+####gitignore
+* maintain we you go
+* start with a "beefy" one from template
+
+####Renviron
+* variables that can be called through out such as database usernames and passwords (not uploaded to GitHub)
+
+###analyses
+Any file that *asks questions* about the data:
+
+* exploratory files
+* CRISP-DM related error checking and validation
+* One-time deliverables
+
+###data
+Store data in this folder but be sure to add file types to gitignore!
+
+
+###docs
+
+Consider this the folder if the answer to any of the following questions is **false**:
+1. Will the contents of this file be visible in the app? (visible in app = www folder)
+2. Is the contents of this file used for styling (i.e. CSS)? (www folder)
+3. Does it ask question about the data? (analyses folder)
+
+* Notes and team documents
+* License information and other non-R scripts
+* Client documentation and supporting files given by them
+
+
+####Naming examples:
+No real naming rules in this folder; it is a reference area.  We can keep team suggestions here:
+
+<br>
+
+
+Name                    |Description                                                 |
+----------------------- | ---------------------------------------------------        |
+supporting_(anything)   | supporting documents from other projects or internal       |
+client_(anything)       | documentation provided to us by the client                 |
+DSP_                    | Data Science Procedure, reference document                 |
+DSR_                    | Data Science Report, templated output/deliverable          |
+DST_                    | Data Science Template, formatting template for any putpose |
+
+
+###rsconnect
+Nothing to manage in this folder, it is for deployment.
+
+
+###run_deploy
+
+Really only 2 files need to be here
+
+<br>
+
+File | Purpose
+------------- | ------------------------------------------------
+
+run_app.R           | Should be able to run the app to see changes.  This is the "TOC" of the app; it contains sources() to all files that are needed to run and deploy It also must contain notes on any application specific items.
+
+deploy.R        | only the code needed to deploy the web.  All codes sourced in the "run" script need ran first.
+
+
+
+
+###tests
+* This folder is used for the "shinytests" package; this package stores and uses stuff here
+* This folder also contains templated error checking scripts used for app changes such as:
+  +Data Updates
+  +Visual updates (adding images)
+  +Visual updates with dependancies (new graphs with new calculated data subsets)
+
+
+###www
+This folder should contain all attachments to the application such as files included in application (e.g. rmd document), images and css files.  This of it as a "common" directory.  
+
+
+
+
+
+<br>
+
+####Naming examples:
+
+No real naming rules in this folder; it is a reference area.  We can keep team suggestions here:
+
+
+
+Name                    |Description                                          |
+----------------------- | --------------------------------------------------- |
+supporting_(anything)   | supporting documents from other projects or internal|
+draft_(anything)        | draft versions of reports; not yet reviewed         |
+final_(anything)        | report ready for client                             |
+*folders*               | working repositories, naming can be similar to files|          
+
+
+
+###read {#read}
+
+####Naming examples:
+
+Name                    |Description                                          
+----------------------- | --------------------------------------------------- 
+SQL                     | folder/files for SQL                                
+read.R                  | *ingest* data;contains only database connections for the purpose of being able to share connections or app development outside
+read_connect.R          | DB connections and tbl connection statements
+read_load.R             | copy/write to DB statements; for the purpoe of updating the applications
+
+
+
+###prep {#prep  .tabset .tabset-fade .tabset-pills}
+
+* Files in this filder are generally used for updating and running the app; critical scripts
+
+* Data aquisition/connection/update
+
+* Files that combine data sources
+
+
+####Naming examples:
+
+Naming examples   |  Description   |
+------------------|---------------------------------------------|
+clean_dataset1    | First prep script ran in the app_run.R
+clean_dataset2    | Second prep script ran in the app_run.R 
+clean_combine     | combine data set 1 and 2 (not always used)
+scrub_feather     | PHI scrub script after preps
+scrubd_clean_abc  | More transformations or calcs after PHI removed *(not an offical script type; these start as ad-hoc analysis scripts and need incorporated back into prep scripts)*
+
+
+####template_funcs (folder within prep)
+This folder contains scripts with reuseable functions made from existing code.  Pull them out, add to the global.R script to use them.
+
+Name                    |Description                                          
+----------------------- | --------------------------------------------------- 
+datefield_ymd           | changes date field formats
+filepath_fun            | function for oneDrive file paths so that the team does have to change paths when working together
+files_combine_fun       | function to combine files in a folder that are csv or excel
+IDfield_alphaNApadding  | fixes the padding and NAs and case sensitivity for ID fields (made from mcaid ID fields/SIS)
+
+
+
+##GitHub
+
+###Branches
+* Always branch from Master
+* Name branches with "Description_Initials" for quick visibility
+* Provide detailed description if possible of what area branch is for
+* Make separate branches for separate areas of focus to help with merges
+
+Gitbash resources:
+
+Helpful links:
+
+[Removing commits](https://gist.github.com/CrookedNumber/8964442)
+
+1. Open GitBAsh
+2. Set the cd
+3. Ensure the branch is correct (it picks the one open in GitDesktop)
+4. git --hard HEAD (then ^ to remove one commit, or ~# to remove another number)
+5. git push origin -f (this is important because otherwise it'll just pull the commit back in)
+
+    
+
+
+#Appendix
+##Data Science Documents Guide: {#dsdg}
+
+Name                    |Description                                                 |
+----------------------- | ---------------------------------------------------------- |
+DSP_                    | Data Science Procedure, reference document                 |
+DSR_                    | Data Science Report, templated output/deliverable          |
+DST_                    | Data Science Template, formatting template for any purpose |
+
+
+
+
+---
+
+
+#
+<br>
+<br>
+<br>
+EndNotes
+<br>
+
+
+
+
+
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; bottom: 10px; left: 2px;">
+  ![](../www/tbdSolutions-logo-small_resizedFlex48H.png)
+</div>
+   
+<div style="position: fixed; bottom: 22px; left:145px;">
+  <div id="feedback"><a href="https://www.tbdsolutions.com/"> © 2019</a></div>
+</div>'}else(logoPrint='')
+
+```
+`r logoPrint`
