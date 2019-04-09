@@ -1,0 +1,220 @@
+---
+title: "Data Science Procedure"
+subtitle: "Product Lifecycle"
+output:
+  html_document:
+    df_print: paged
+    self_contained: yes
+    theme: spacelab
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  github_document: default
+  word_document:
+    reference_docx: ../www/word_style_temp_1.docx
+    toc: yes
+    toc_depth: 2
+  pdf_document: default
+    
+---
+
+
+[comment]: #Knit setup
+```{r setup, warning = F, message = F, include=FALSE, echo=FALSE}
+
+knitr::opts_chunk$set(
+
+  echo = F, warning = F, message = F
+
+)
+```
+[comment]:#knit package and data file loading
+```{r load}
+
+```
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
+
+```
+
+
+[comment]:#DOCUMENT BEGIN
+
+#
+
+
+**Purpose:**
+To provide an *reference* for **product lifecycle** related processes and practices for the TBD Solutions data science team.  This document is not intended to be "filled-out" like a template; only referenced. See the [Data Science Document Guide](#dsdg) for more on information on data science team documents.
+
+<br>
+
+
+
+#Data Science Products:
+#### Product = "Medium"
+TBD Solutions products are more like "mediums" because they are a way to display information to the customer.  Which medium to select is based on many factors.
+
+
+<br>
+
+##Determining the best Medium
+
+Use the **DSR_framework** document to learn what the best fit for the client will be based on needs and budget.
+
+<br>
+
+*What is the best data approach and target "meduim"; what do they need to make their decisions?*
+
+<br>
+
+### Commmon Mediums
+
+|        Medium          |  Good fit when...          |   Not a good fit when...         | 
+|------------------------|----------------------------|----------------------------------|
+|Static Report           | Low budget, clear questions|client is unsure what questions they have |
+|Interactive RMD report  | Low budget, clear questions|client is unsure what questions they have |
+|Flexdashboard           | Medium budget, clear questions,project is projected to continue for at least 1 year|client is unsure what questions they have |
+|Shiny Application       | Good Budget, unclear questions, project expected to be open 2+years| low budget, product not expected to be used in any other capacity |
+
+
+
+
+
+
+##Product Lifecycle Events{.tabset .tabset-fade}
+
+###New Data Product
+Steps to initiate:
+
+1. Create new repository and add the most current templated structural and script items to it
+2. 
+
+
+###Existing Product Update
+
+*(refer to **DSP_data_receipt_governance** for more details on script types)*
+
+<br>
+
+NOTES: wouldn't this process be different for apps with SQL scripts?  need thi consider that?
+
+1. Read application update instructions
+    + **Note:** Application specific instructions are located in the #_read_update_odbcflat file(s) (usually there should only be one, but there could be multiple for complicated applications) 
+2. Identify data sources
+3. Ensure new data has been received for all data sources
+4. Update the product by running the following scripts in the repository unless otherwise specifed in the application instructions:
+      + read_connect_odbcflat.R
+      + app_run.R 
+5. Perform testing steps are per the [test section](#testing)
+6. Check-in changes to github and create pull-request
+7. Deploy product changes to the Shinyapps.io server
+
+
+###Product Retirement
+
+Basic Considerations:
+
+* Database
+* App server deployment
+* GitHub Repository
+* 
+
+
+
+
+##Error Checking and Testing { #testing  .tabset .tabset-fade}
+
+Error checking and testing is risk based:
+
+Questions that need resolved for this process:
+
+* What is/are the best packages for TBDS: 
+    + sinytest, testthat, validate?, vitrite? (jh, I don't know what this is)
+* How often should we formally test?
+
+<br>
+
+###Initial Proposal:
+
+####Guiding Principles:
+
+* Testing should focus on only what changed
+* Adjacent areas that could be affected by change should be tested
+* 
+
+####Testing Plan:
+
+1. **New Deployment of Application of Major Section:**
+    + Comprehensive testing using error checking packages
+2. **Data Update:**
+    + If DB is updated: verify new date range is active in SQL Server
+    + Verify that all final dataframes/data sets have the new date range active 
+    + Run all transfomation scripts
+    + Run the application/medium
+    + Verify that all visuals are populated using the new date range
+3. **Section Edit:**
+    + Use *testthat* package to test new functions
+    + Run the application/medium
+    + Verify that new section is working (i.e. visuals are rendered, no overlapping material)
+    + Click through all areas of the medium and verify there are no obvious negative effects (e.g. html code interactions)
+
+
+####GitHub Merges:
+
+* Evaluate discprepencies individually
+* Meet with broader team or team member when discrepency cannot be easily merged to determine how to combine changes
+
+
+
+
+
+
+
+
+
+<br>
+
+#Appendix
+##Data Science Documents Guide: {#dsdg}
+
+
+Name                    |Description                                                 |
+----------------------- | ---------------------------------------------------------- |
+DSP_                    | Data Science Procedure, reference document                 |
+DSR_                    | Data Science Report, templated output/deliverable          |
+DST_                    | Data Science Template, formatting template for any putpose |
+
+
+
+
+---
+
+
+#
+<br>
+<br>
+<br>
+EndNotes
+<br>
+
+
+
+
+
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; bottom: 10px; left: 2px;">
+  ![](../www/tbdSolutions-logo-small_resizedFlex48H.png)
+</div>
+   
+<div style="position: fixed; bottom: 22px; left:145px;">
+  <div id="feedback"><a href="https://www.tbdsolutions.com/"> © 2019</a></div>
+</div>'}else(logoPrint='')
+
+```
+`r logoPrint`
