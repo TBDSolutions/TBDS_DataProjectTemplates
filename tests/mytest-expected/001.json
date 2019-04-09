@@ -1,0 +1,20 @@
+{
+  "input": {
+    "._bookmark_": 1,
+    "sidebar_tab": null,
+    "sidebarCollapsed": true,
+    "sidebarItemExpanded": null,
+    "wt": 69.1
+  },
+  "output": {
+    "ui_main_sidebar": {
+      "html": "<ul class=\"sidebar-menu\">\n  <div id=\"sidebar_tab\" class=\"sidebarMenuSelectedTabItem\" data-value=\"null\"><\/div>\n<\/ul>",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
