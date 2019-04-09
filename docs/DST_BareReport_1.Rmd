@@ -1,0 +1,210 @@
+---
+title: "Data Science Template"
+subtitle: Project Name - Description
+output:
+  html_document:
+    df_print: paged
+    self_contained: yes
+    theme: spacelab
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+  github_document: default
+  pdf_document: default
+    
+  word_document:
+    reference_docx: ../www/word_style_temp_1.docx
+    toc: yes
+    toc_depth: 2
+---
+
+
+[comment]: #Use this template for html or word
+
+[comment]: #Knit setup
+```{r setup, warning = F, message = F, include=FALSE, echo=FALSE}
+
+knitr::opts_chunk$set(
+
+  echo = F, warning = F, message = F
+
+)
+```
+[comment]:#knit package and data file loading
+```{r load}
+#pick and choose packages as needed, tried to predict some useful ones
+
+
+#Possibly needed: Data preparation tools
+library(tidyverse);library(lubridate);library(forcats);library(magrittr);
+#Possibly needed for interacting with data sources
+library(feather)
+
+#Possibly needed for graphics
+library(plotly);library(DT);library(shiny);
+
+# Read in processed dataset 
+
+```
+
+
+[comment]:#DOCUMENT BEGIN
+
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
+
+```
+
+
+#
+**Report Layout:**<n/>
+The *Reference Material* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) tab, data analysis details in the [Methods](#methods-1) and details about the contributors on the [Reviewer Credits]({#creds}) tab.  
+
+
+
+<br>
+
+---
+
+
+
+# Header 1 
+[comment]:#intended as intro section, no tabs
+
+
+## Subheader 1
+
+
+
+---
+
+
+#Header 2  {.tabset .tabset-fade}
+
+##Analyses 1
+
+
+```{r subset}
+
+
+```
+
+
+
+##Analyses 2
+
+
+```{r }
+
+```
+
+
+
+
+
+
+# Reference Material {.tabset .tabset-fade}
+
+##About this Document {#about_doc}
+
+
+Users of this document can interact with any of the data visualizations provided in this supplement.  Below is a list of the primary ways that each of the data displays can be used:
+
+
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table of contents at the left side of the document can be used to navigate throughout the document.  When the user selects a section of the table of contents, the subsections will expand to allow for detailed selection of the portion of document that a user wishes to investigate.
+
+
+
+**Tables:**  Tables of data can be sorted based on the values in any of their columns.  When a table contains many values, it can be expanded or truncated to show a certain number of rows at a time.  In some cases, tables can be filtered based on the values in their columns.
+
+
+
+**Charts:**  Charts can be interacted with in any of the following ways:
+
+
+
+- *Filtering* out specific categories by selecting/deselecting those items in the chart legend
+
+- *Hovering* over a chart element to see a description of the data represented
+
+- *Highlighting* a certain portion of a chart to zoom in
+
+- *Saving* a screenshot of a given chart'}else(AboutMore='')
+
+```
+`r AboutMore`
+
+
+---
+
+
+## Methods {#methods-1}
+
+
+```{r}
+
+
+```
+
+## Outliers 
+
+
+```{r}
+
+
+```
+
+
+##Reviewer Credits {#Creds}
+
+This analysis has benefited from the collaboration, dedication and review of various members of the **INSERT ORG. HERE**.  Special thanks to:
+
+
+- *SPARTY*, for being awesome
+
+- *Jason*, for loving SPARTY too
+
+- *Josh*, for hiring me and paying me to talk about sparty in order to make a template
+
+- *Jenna*, for liking hockey; an awesome sport that was not covered in this paper 
+
+
+
+---
+
+
+
+
+
+#
+<br>
+<br>
+End of document
+<br>
+<br>
+<br>
+<br>
+
+
+
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; bottom: 10px; left: 2px;">
+  ![](../www/tbdSolutions-logo-small_resizedFlex48H.png)
+</div>
+   
+<div style="position: fixed; bottom: 22px; left:145px;">
+  <div id="feedback"><a href="https://www.tbdsolutions.com/"> © 2019</a></div>
+</div>'}else(logoPrint='')
+
+```
+`r logoPrint`
