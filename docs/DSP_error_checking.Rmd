@@ -1,0 +1,93 @@
+---
+title: "Error Checking Process"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+    theme: spacelab
+  word_document:
+    reference_docx: ../www/word_style_temp_1.docx
+    toc: yes
+    toc_depth: 2
+  pdf_document: default
+---
+```{r setup, warning = F, message = F, echo=FALSE}
+
+knitr::opts_chunk$set(
+
+  echo = F, warning = F, message = F
+
+)
+```
+[comment]:#knit package and data file loading
+```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}
+#Possibly needed: Data preparation tools
+library(tidyverse); library(tibble)
+
+#Possibly needed for interacting with data sources
+#library(DBI);library(odbc);library(feather)
+
+```
+[comment]: # formatting keeps html and word happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
+
+```
+
+
+##Error Checking and Testing { #testing  .tabset .tabset-fade}
+
+Error checking and testing is risk based:
+
+Questions that need resolved for this process:
+
+* What is/are the best packages for TBDS: 
+    + sinytest, testthat, validate?, vitrite? (jh, I don't know what this is)
+* How often should we formally test?
+
+<br>
+
+###Initial Proposal:
+
+####Guiding Principles:
+
+* Testing should focus on only what changed
+* Adjacent areas that could be affected by change should be tested
+* 
+
+####Testing Plan:
+
+1. **New Deployment of Application of Major Section:**
+    + Comprehensive testing using error checking packages
+2. **Data Update:**
+    + If DB is updated: verify new date range is active in SQL Server
+    + Verify that all final dataframes/data sets have the new date range active 
+    + Run all transfomation scripts
+    + Run the application/medium
+    + Verify that all visuals are populated using the new date range
+3. **Section Edit:**
+    + Use *testthat* package to test new functions
+    + Run the application/medium
+    + Verify that new section is working (i.e. visuals are rendered, no overlapping material)
+    + Click through all areas of the medium and verify there are no obvious negative effects (e.g. html code interactions)
+
+
+
+
+[comment]: # formatting keeps html andword happy in same template
+```{r results='hide'}
+OutList <- rmarkdown::all_output_formats(knitr::current_input())
+OutType <- OutList[1]
+if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; bottom: 10px; left: 2px;">
+  ![](../www/tbdSolutions-logo-small_resizedFlex48H.png)
+</div>
+   
+<div style="position: fixed; bottom: 22px; left:145px;">
+  <div id="feedback"><a href="https://www.tbdsolutions.com/"> © 2019</a></div>
+</div>'}else(logoPrint='')
+
+```
+`r logoPrint`
