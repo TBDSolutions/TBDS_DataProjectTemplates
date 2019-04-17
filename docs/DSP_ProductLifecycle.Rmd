@@ -120,14 +120,6 @@ Basic Considerations:
 
 
 
-####GitHub Merges:
-
-* Evaluate discprepencies individually
-* Meet with broader team or team member when discrepency cannot be easily merged to determine how to combine changes
-
-
-
-
 
 
 
