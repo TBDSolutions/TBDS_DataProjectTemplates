@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 )
 ```
-[comment]:#knit package and data file loading
+<knit package and data file loading>
 ```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Possibly needed: Data preparation tools
 library(tidyverse); library(tibble)
@@ -29,13 +29,21 @@ library(tidyverse); library(tibble)
 #library(DBI);library(odbc);library(feather)
 
 ```
-[comment]: # formatting keeps html and word happy in same template
+<formatting keeps html and word happy in same template>
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
 if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 ```
+
+
+**Purpose:**
+To provide an *reference* for the **error checking** and **product deployment** processes and practices for the TBD Solutions data science team.  This document is not intended to be "filled-out" like a template; only referenced. See the [Data Science Document Guide](#dsdg) for more on information on data science team documents.
+
+<br>
+
+
 
 
 ##Error Checking and Testing { #testing  .tabset .tabset-fade}
@@ -75,9 +83,7 @@ Questions that need resolved for this process:
     + Click through all areas of the medium and verify there are no obvious negative effects (e.g. html code interactions)
 
 
-
-
-[comment]: # formatting keeps html andword happy in same template
+<formatting keeps html andword happy in same template>
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]

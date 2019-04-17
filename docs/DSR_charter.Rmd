@@ -40,9 +40,11 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 
 
-**Report Layout:**
+**Purpose:**
 
 TBD Solutions follows the *CRISP-DM*^[The CRISP-DM process is an iterative methodology that is widely accepted by the data science community.  TBDS follows the [Microsoft Azure proposed methodology](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/overview).] process for data analysis projects and this report provides a place to document these steps and their outcomes.  This report serves as a framework for the collaborative process of drafting a project charter with TBDS clients.  TBDS follows the project charter methodology proposed by Azure^[The [Microsoft Azure Project Charter](https://github.com/Azure/Azure-TDSP-ProjectTemplate/blob/master/Docs/Project/Charter.md) methodology is a framework for collecting background information and documenting project requirements and expected outcomes.].  The project charter is a key part of the *Business Understanding* phase of the *CRISP-DM* process.  
+
+**Report Layout:**
 
 The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) section.  
 

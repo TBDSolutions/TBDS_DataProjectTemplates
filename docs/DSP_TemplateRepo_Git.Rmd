@@ -217,7 +217,7 @@ Name                    |Description
 SQL                     | folder/files for SQL                                
 read.R                  | *ingest* data;contains only database connections for the purpose of being able to share connections or app development outside
 read_connect.R          | DB connections and tbl connection statements
-read_load.R             | copy/write to DB statements; for the purpoe of updating the applications
+read_load.R             | copy/write to DB statements; for the purpose of updating the applications
 
 
 
