@@ -5,10 +5,9 @@ output:
   html_document:
     df_print: paged
     toc: yes
-    toc_float: yes
     theme: spacelab
   word_document:
-    reference_docx: ../www/word_style_temp_1.docx
+    reference_docx: "../www/word_style_temp_1.docx"
     toc: yes
     toc_depth: 2
   pdf_document: default
@@ -21,7 +20,7 @@ knitr::opts_chunk$set(
 
 )
 ```
-[comment]:#knit package and data file loading
+
 ```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Possibly needed: Data preparation tools
 library(tidyverse); library(tibble)
@@ -30,7 +29,7 @@ library(tidyverse); library(tibble)
 #library(DBI);library(odbc);library(feather)
 
 ```
-[comment]: # formatting keeps html and word happy in same template
+
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
@@ -39,19 +38,23 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 ```
 
 
-#
-**Report Layout:**<n/>
+**Purpose:**
 TBD Solutions follows the *CRISP-DM*^[The CRISP-DM process is an iterative methodology that is widely accepted by the data science community.  TBDS follows the [Microsoft Azure proposed methodology](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/overview).] process for data analysis projects and this report provides a place to document these steps and their outcomes.  This report focuses on the *Data Understanding* phase of the process.
 
-
+**Report Layout:**
 The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) section. See the [Data Dictionary](#data_dict) section of this report for a full list of variables and descriptions.
 ---
 
-
-
 #**Data Understanding**
 
-[comment]: # copy this from DSR_charter
+Separate documents exist are created for this process in the *analyses* repository folder using the following methodology:
+
+### Data Acquisition & Understanding
+
+*	Read in data from sources, convert access database tables into SQL Server tables on TBDS server for analysis
+*	Data exploration and understanding
+*	Complete data quality analysis and review with Project Sponsor and Project Manager
+
 
 The following data sources will be used to solve the problem outlined above.
 
@@ -85,10 +88,34 @@ The following data sources will be used to solve the problem outlined above.
 
 ##Data Preparation and Modeling  
 
-Occur in cyle with each other mostly after the **Business Understanding** and **Data Understanding** phases.  Separate documents exist are created for this process in the *analyses* repository folder.
+The data preparation files and summaries (if needed) are linked and described below:
+
+#### Processed Data
+| Processed Dataset Name | Input Dataset(s)             | Data Processing Tools/Scripts | Link to Report |
+| ---------------------: | -----------------:           | ----------------------------: | -------------: | 
+| Processed Dataset 1    | [Dataset1](clean_data1/link), 
+                           [Dataset2](clean_data2/link) | [clean_data1_data2](link3)    | [Processed Dataset 1 Report](link/to/report1)|
+| Processed Dataset 2    | [Dataset3](clean_data2/link) | [clean_data3](link4)          | [Processed Dataset 1 Report](link/to/report2)|
+
+
+* Processed Data1 summary. <Provide brief summary of the processed data, such as why you want to process data in this way. More detailed information about the processed data should be in the Processed Data1 Report.>
+* Processed Data2 summary. <Provide brief summary of the processed data, such as why you want to process data in this way. More detailed information about the processed data should be in the Processed Data2 Report.> 
+
+
+
+##Modeling, Visualization and Analysis
+
+The modeling and visualization elements are developed and maintained in the data medium determined in the *project charter*.  The following methodology is applied:
+
+*	Document key variables derived from source dataset (as necessary) in the [data dictionary](#data_dict).
+*	Evaluate algorithms or statistical models developed (as necessary)
+*	Develop visualizations and additional output, as defined
+*	Draft report / output and review with Project Sponsor and Project Manager
 
 
 ## Data Dictionary {#data_dict}
+
+The data dictionary provides documentation of feature variables that are important to the analysis and project.
 
 ```{r }
 
@@ -114,7 +141,7 @@ tribble(
 
 
 
-# Appendix {#app .tabset .tabset-fade}
+# **Appendix** {#app}
 
 ##About this Document {#about_doc}
 
@@ -154,7 +181,6 @@ if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table o
 ---
 <br>
 EndNotes
-<br>
 
 
 
@@ -162,11 +188,11 @@ EndNotes
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
-if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; bottom: 10px; left: 2px;">
+if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; top: 10px; right: 10px;">
   ![](../www/tbdSolutions-logo-small_resizedFlex48H.png)
 </div>
    
-<div style="position: fixed; bottom: 22px; left:145px;">
+<div style="position: fixed; top: 40px; right:20px;">
   <div id="feedback"><a href="https://www.tbdsolutions.com/"> © 2019</a></div>
 </div>'}else(logoPrint='')
 
