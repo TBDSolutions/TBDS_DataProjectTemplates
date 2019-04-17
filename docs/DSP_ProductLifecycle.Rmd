@@ -81,9 +81,6 @@ Use the **DSR_framework** document to learn what the best fit for the client wil
 
 
 
-
-
-
 ##Product Lifecycle Events{.tabset .tabset-fade}
 
 ###New Data Product
@@ -120,46 +117,7 @@ Basic Considerations:
 * Database
 * App server deployment
 * GitHub Repository
-* 
 
-
-
-
-##Error Checking and Testing { #testing  .tabset .tabset-fade}
-
-Error checking and testing is risk based:
-
-Questions that need resolved for this process:
-
-* What is/are the best packages for TBDS: 
-    + sinytest, testthat, validate?, vitrite? (jh, I don't know what this is)
-* How often should we formally test?
-
-<br>
-
-###Initial Proposal:
-
-####Guiding Principles:
-
-* Testing should focus on only what changed
-* Adjacent areas that could be affected by change should be tested
-* 
-
-####Testing Plan:
-
-1. **New Deployment of Application of Major Section:**
-    + Comprehensive testing using error checking packages
-2. **Data Update:**
-    + If DB is updated: verify new date range is active in SQL Server
-    + Verify that all final dataframes/data sets have the new date range active 
-    + Run all transfomation scripts
-    + Run the application/medium
-    + Verify that all visuals are populated using the new date range
-3. **Section Edit:**
-    + Use *testthat* package to test new functions
-    + Run the application/medium
-    + Verify that new section is working (i.e. visuals are rendered, no overlapping material)
-    + Click through all areas of the medium and verify there are no obvious negative effects (e.g. html code interactions)
 
 
 ####GitHub Merges:
@@ -186,7 +144,6 @@ Name                    |Description                                            
 DSP_                    | Data Science Procedure, reference document                 |
 DSR_                    | Data Science Report, templated output/deliverable          |
 DST_                    | Data Science Template, formatting template for any putpose |
-
 
 
 
