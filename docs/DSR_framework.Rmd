@@ -51,12 +51,17 @@ The *Appendix* section of this report contains more detailed information regardi
 
 #**Data Understanding**
 
+[comment]: # copy this from DSR_charter
+
+The following data sources will be used to solve the problem outlined above.
+
 ## Define the Datasets
 | Dataset Name  | Access Process         | Dataset Definition  |  Update Frequency |
 |:--------------|:-----------------------|:--------------------|:------------------| 
 |               |                        |                     |                   |
 |               |                        |                     |                   |
 |               |                        |                     |                   |
+
 
 
 ##What does the data look like?
