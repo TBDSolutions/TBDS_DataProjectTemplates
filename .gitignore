@@ -98,7 +98,7 @@ vignettes/*.pdf
 *.png
 *.css
 *.js
-*.html
+#*.html
 *LICENSE
 
 ## Files that contain PHI
