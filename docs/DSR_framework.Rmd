@@ -1,16 +1,12 @@
 ---
-title: "Data Science Report"
+title: "CRISP-DM Framework"
 subtitle: "CLIENT NAME"
 output:
   html_document:
     df_print: paged
     toc: yes
     toc_float: yes
-  html_notebook:
-    code_folding: hide
-    highlight: tango
     theme: spacelab
-    toc: yes
   word_document:
     reference_docx: ../www/word_style_temp_1.docx
     toc: yes
@@ -34,7 +30,7 @@ library(tidyverse); library(tibble)
 #library(DBI);library(odbc);library(feather)
 
 ```
-[comment]: # formatting keeps html andword happy in same template
+[comment]: # formatting keeps html and word happy in same template
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
@@ -45,66 +41,22 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 #
 **Report Layout:**<n/>
-TBD Solutions follows the CRISP-DM process for data analysis projects and this report provides a place to document these steps and their outcomes.  The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) section.  The [Project Roles ](#ProjectRoles) section of this report for a list of contacts.  The [Action Plan Overview](#actplov) area near the end of this document outlines the high-level project management plan.
+TBD Solutions follows the *CRISP-DM*^[The CRISP-DM process is an iterative methodology that is widely accepted by the data science community.  TBDS follows the [Microsoft Azure proposed methodology](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/overview).] process for data analysis projects and this report provides a place to document these steps and their outcomes.  This report focuses on the *Data Understanding* phase of the process.
 
 
-
-<br>
-
-Q/A with the Client: These will iterate to produce a shared **Business Understanding** and **Data Understanding** <br>
-**Terms:**  <br>
-
-* Business Problem (BP)
-* Business Requirement (BR) 
-* Business Solution (BS)
-
-#**Business Understanding**  
-##Client/Business Domain 
-* Notes about the client's purpose for conducting business and overview of their goals
-
-##Idenify the Business Problem(s)
+The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) section. See the [Data Dictionary](#data_dict) section of this report for a full list of variables and descriptions.
+---
 
 
-* PB-1:  
-* PB-2:
-* PB-3: 
-
-##Business' Requirements for Solution: {.tabset .tabset-fade}
-
-### Business Need/Purpose
-
-| As a...   | I want to know...  | So I can...   |
-|:----------|:-------------------|:--------------| 
-| Admin     |Data measure        | Action        |
-| Manager   |Data measure        | Action        |
-| CFO       |Data measure        | Action        |
-
-<br>
-
-### Requirements Mapping 
-
-*All PB's must be mapped or stated as out of scope* <br>
-
-
-
-| BR-ID     | Requiment          | PB-ID(s)      |
-|:----------|:-------------------|:--------------| 
-|           |                    |  PB-1,PB-2    |
-|           |                    |               |
-|           |                    |               |
-
-<br>
 
 #**Data Understanding**
+
 ## Define the Datasets
 | Dataset Name  | Access Process         | Dataset Definition  |  Update Frequency |
 |:--------------|:-----------------------|:--------------------|:------------------| 
 |               |                        |                     |                   |
 |               |                        |                     |                   |
 |               |                        |                     |                   |
-
-
-
 
 
 ##What does the data look like?
@@ -118,131 +70,42 @@ Q/A with the Client: These will iterate to produce a shared **Business Understan
 
 
 
-##Data Quality Notes:
+##Data Quality Notes: 
 | Dataset Name  | Quality Notes          | 
 |:--------------|:-----------------------| 
 |               |                        |                     
 |               |                        |                     
 |               |                        |
 
-See the [Data Dictionary](#data_dict) section of this report for a full list of variables and descriptions.
+
+##Data Preparation and Modeling  
+
+Occur in cyle with each other mostly after the **Business Understanding** and **Data Understanding** phases.  Separate documents exist are created for this process in the *analyses* repository folder.
 
 
-##**Action Plan Overview**  {#actplov .tabset .tabset-fade .tabset-pills}
-### Define objectives and required output
-*	Specify key questions and related variables, identify relevant data sources
-*	Review related process mapping documents and internal analyses/reports to date
-*	Complete Project Charter Document outlining key questions, variables and required outputs; review with Project Manager and Sponsor
-* Define Project Plan and Milestones
+## Data Dictionary {#data_dict}
 
-### Data Acquisition & Understanding
-*	Read in data from sources, convert access database tables into SQL Server tables on TBDS server for analysis
-*	Data exploration and understanding
-*	Complete data quality analysis and review with Project Sponsor and Project Manager
+```{r }
 
-###Modeling, Visualization and Analysis
-*	Document key variables derived from source dataset (as necessary)
-*	Evaluate algorithms or statistical models developed (as necessary)
-*	Develop visualizations and additional output, as defined
-*	Draft report / output and review with Project Sponsor and Project Manager
+#you can pick which method you like :)
 
-###Review & Acceptance
-*	Test use of reporting as part of business processes
-*•	Confirm analysis / deliverables meet expectations
-*	Complete final report/output
+#one reason I thought of I like kable maybe instead is that I can read in your dataset and not have to type var names?
+datadict <- cbind(names(Theoph),"")
+colnames(datadict) <- c("Variable", "Definition")
 
-###Project Management
-*	Meet with **CLIENT** project team to define scope of work
-*	Revise project plan as necessary for TSA project
-*	Milestone meetings with project manager and sponsor
-*	Project scrum meetings with team
-*	Various other project management tasks
+datadict[1,2] <- "hi there"
+knitr::kable(datadict)
+
+#one reason I like tribble is that though I have to type them, I can see them
+tribble(
+  ~Variable, ~Definition,
+  "a",   1,
+  "b",   2,
+  "c",   3
+)
 
 
-
-##**Project Scope **
-
-Items that are explicitly in scope: <br>
-
-* Item 1
-* Item 2
-
-Item(s) that are explicitly out of scope: <br>
-
-* Item 1
-* Item 2
-
-
-
-*All PB's must be mapped or stated as out of scope*
-
-| BS-ID  | Solution Description  | How will the customer use this   | BR-IS(s)   | 
-|:-------|:----------------------|:---------------------------------|:-----------| 
-|        |                       |                                  |            | 
-|        |                       |                                  |            | 
-|        |                       |                                  |            | 
-|        |                       |                                  |            | 
-
-
-
-
-##**Project Roles** {#ProjectRoles}
-
-|R (Responsible) | A (Accountable)  | S (Supports )  |  C (Consulted)  | I (Informed)  |
-|:---------------|:-----------------|:---------------|:----------------| :-------------|
-|                |                  |                |                 |               |
-|                |                  |                |                 |               |
-|                |                  |                |                 |               |
-
-
-####Core Team
-
-Define what core team means for this project, who they are and what they are responsible for in the table above
-* NAME: *Title/Role*
-
-
-<br>
-
-####Client Subject Matter Experts
-* NAME: *Title/Role*
- 
-
-<br>
-
-####TBD Solutions
-* Project Lead: *Josh Hagedorn*
-* Data Scientist(s): *Josh Hagedorn*
-
-<br>
-
-##Communication Format
-* Weekly Scrum meetings between client and TBDS *Project Core Team*
-
-
-
-
-##**Measures of Success**
-
-###Qualitative:
-
-Qualitative Measures (QL)
-
-| QL-ID     | Name       | Description   |
-|:----------|:------------|:--------------| 
-|           |             |               |
-|           |             |               |
-|           |             |               |
-
-
-###Quanitative:
-
-Quantitative Measures (QL) [comment]:(All QL's must be mapped)
-
-| QN-ID     | Name        | Description   | QL-ID(s)    |
-|:----------|:------------|:--------------| :-----------|
-|           |             |               |             |
-|           |             |               |             |
-|           |             |               |             |
+```
 
 
 
@@ -283,63 +146,7 @@ if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table o
 
 
 
-
-
-
-##Data Preparation and Modeling  
-*Occur in cyle with each other mostly after the **Business Understanding** and **Data Understanding** phases
-
-
-
-
-## Data Dictionary {#data_dict}
-
-```{r }
-
-#you can pick which method you like :)
-
-#one reason I thought of I like kable maybe instead is that I can read in your dataset and not have to type var names?
-datadict <- cbind(names(Theoph),"")
-colnames(datadict) <- c("Variable", "Definition")
-
-datadict[1,2] <- "hi there"
-knitr::kable(datadict)
-
-#one reason I like tribble is that though I have to type them, I can see them
-tribble(
-  ~Variable, ~Definition,
-  "a",   1,
-  "b",   2,
-  "c",   3
-)
-
-
-```
-
-
-
-##Target outputs:
-
-
-*What is the best data approach and target "meduim"; what do they need to make their decisions?*
-
-Notes from client on which will best fit:
-
-###Questions:
-
-*How often will this output be needed? (e.g. once, monthly, yearly?)
-*Do you need to see the data in several ways to make your decisions?
-*Do you need to be able to filter and drill-in?
-
-
-
-###Decision: Output target:
-* Which from **DSP_ProductLifecycle** and why?
-
-
-
-
-#
+---
 <br>
 EndNotes
 <br>
