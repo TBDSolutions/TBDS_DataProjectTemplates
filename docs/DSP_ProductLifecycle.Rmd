@@ -8,7 +8,6 @@ output:
     theme: spacelab
     toc: yes
     toc_depth: 2
-    toc_float: yes
   github_document: default
   word_document:
     reference_docx: ../www/word_style_temp_1.docx
@@ -121,10 +120,6 @@ Basic Considerations:
 
 
 
-
-
-
-
 <br>
 
 #Appendix
@@ -151,17 +146,14 @@ EndNotes
 
 
 
-
-
-[comment]: # formatting keeps html andword happy in same template
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
-if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; bottom: 10px; left: 2px;">
+if("html_document" %in% OutType){logoPrint = '<div style="position: fixed; top: 10px; right: 10px;">
   ![](../www/tbdSolutions-logo-small_resizedFlex48H.png)
 </div>
    
-<div style="position: fixed; bottom: 22px; left:145px;">
+<div style="position: fixed; top: 40px; right:20px;">
   <div id="feedback"><a href="https://www.tbdsolutions.com/"> © 2019</a></div>
 </div>'}else(logoPrint='')
 
