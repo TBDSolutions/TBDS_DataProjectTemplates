@@ -13,23 +13,17 @@ output:
   pdf_document: default
 ---
 ```{r setup, warning = F, message = F, echo=FALSE}
-
-knitr::opts_chunk$set(
-
-  echo = F, warning = F, message = F
-
-)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
 ```
 
 ```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Possibly needed: Data preparation tools
-library(tidyverse); library(tibble)
+library(tidyverse); library(tibble);library(DT);library(feather)
 
-#Possibly needed for interacting with data sources
-#library(DBI);library(odbc);library(feather)
+#read in file(s)
 
 ```
-
+<!--formatting keeps html andword happy in same template, works when knitting -->
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
@@ -37,6 +31,7 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 ```
 
+<!-- #DOCUMENT BEGIN -->
 
 **Purpose:**
 TBD Solutions follows the *CRISP-DM*^[The CRISP-DM process is an iterative methodology that is widely accepted by the data science community.  TBDS follows the [Microsoft Azure proposed methodology](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/overview).] process for data analysis projects and this report provides a place to document these steps and their outcomes.  This report focuses on the *Data Understanding* phase of the process.
@@ -44,6 +39,18 @@ TBD Solutions follows the *CRISP-DM*^[The CRISP-DM process is an iterative metho
 **Report Layout:**
 The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) section. See the [Data Dictionary](#data_dict) section of this report for a full list of variables and descriptions.
 ---
+
+#Executive Summary
+
+##Outputs
+```{r fas}
+# datatable(table, extensions = 'Buttons',
+#           options = list(dom = 'Bfrtip',buttons = c('csv', 'excel',  I('colvis')),
+#                          columnDefs = list(list(visible=FALSE, targets=0:6))  #check the number vars
+#                          )
+#           ,rownames= FALSE)
+```
+
 
 #**Data Understanding**
 
@@ -67,16 +74,6 @@ The following data sources will be used to solve the problem outlined above.
 
 
 
-##What does the data look like?
-```{r}
-# What does the data look like?
-# ncol()
-# nrow()
-# nlevels(as.factor())
-# nlevels()
-```
-
-
 
 ##Data Quality Notes: 
 | Dataset Name  | Quality Notes          | 
@@ -98,19 +95,32 @@ The data preparation files and summaries (if needed) are linked and described be
 | Processed Dataset 2    | [Dataset3](clean_data2/link) | [clean_data3](link4)          | [Processed Dataset 1 Report](link/to/report2)|
 
 
-* Processed Data1 summary. <Provide brief summary of the processed data, such as why you want to process data in this way. More detailed information about the processed data should be in the Processed Data1 Report.>
-* Processed Data2 summary. <Provide brief summary of the processed data, such as why you want to process data in this way. More detailed information about the processed data should be in the Processed Data2 Report.> 
+##Processed Data Summary - 1
+<!--
+The **DATAset 1** dataset has `r ncol()` columns and and `r nrow()` rows.  
+```{r}
+#support for issues/notes below
+rm()
+```
+-->
+
+* Processed Data1 Key Notes
+    + Give descriptions of variables (any variables described go in the data dictionary below)
 
 
+##Processed Data Summary - 2
+<!--
+The **DATAset 2** dataset has `r ncol()` columns and and `r nrow()` rows.  
+```{r}
+#support for issues/notes below
+rm()
+```
+-->
 
-##Modeling, Visualization and Analysis
+* Processed Data2 Key Notes
+    + Give descriptions of variables (any variables described go in the data dictionary below)
 
-The modeling and visualization elements are developed and maintained in the data medium determined in the *project charter*.  The following methodology is applied:
 
-*	Document key variables derived from source dataset (as necessary) in the [data dictionary](#data_dict).
-*	Evaluate algorithms or statistical models developed (as necessary)
-*	Develop visualizations and additional output, as defined
-*	Draft report / output and review with Project Sponsor and Project Manager
 
 
 ## Data Dictionary {#data_dict}
@@ -174,8 +184,6 @@ if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table o
 
 ```
 `r AboutMore`
-
-
 
 
 ---

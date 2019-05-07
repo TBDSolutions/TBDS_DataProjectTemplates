@@ -13,44 +13,24 @@ output:
   pdf_document: default
     
   word_document:
-    reference_docx: ../www/word_style_temp_1.docx
+    reference_docx: "../www/word_style_temp_1.docx"
     toc: yes
     toc_depth: 2
 ---
 
+<!-- #Use this template for html or word -->
 
-[comment]: #Use this template for html or word
-
-[comment]: #Knit setup
 ```{r setup, warning = F, message = F, include=FALSE, echo=FALSE}
-
-knitr::opts_chunk$set(
-
-  echo = F, warning = F, message = F
-
-)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
 ```
-[comment]:#knit package and data file loading
+
 ```{r load}
-#pick and choose packages as needed, tried to predict some useful ones
-
-
-#Possibly needed: Data preparation tools
-library(tidyverse);library(lubridate);library(forcats);library(magrittr);
-#Possibly needed for interacting with data sources
-library(feather)
-
-#Possibly needed for graphics
-library(plotly);library(DT);library(shiny);
+library(tidyverse);library(plotly);library(ggplot2);library(DT);library(feather)
 
 # Read in processed dataset 
 
 ```
-
-
-[comment]:#DOCUMENT BEGIN
-
-[comment]: # formatting keeps html andword happy in same template
+<!--formatting keeps html andword happy in same template, works when knitting -->
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
@@ -58,21 +38,15 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 ```
 
+<!-- #DOCUMENT BEGIN -->
 
-#
-**Report Layout:**<n/>
-The *Reference Material* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) tab, data analysis details in the [Methods](#methods-1) and details about the contributors on the [Reviewer Credits]({#creds}) tab.  
-
-
-
-<br>
+**Report Layout:**
+The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) tab, data analysis details in the [Methods](#methods-1) and details about the contributors on the [Reviewer Credits]({#creds}) tab.  
 
 ---
 
 
-
 # Header 1 
-[comment]:#intended as intro section, no tabs
 
 
 ## Subheader 1
@@ -104,9 +78,26 @@ The *Reference Material* section of this report contains more detailed informati
 
 
 
+# **Appendix** {#app .tabset .tabset-fade}
 
 
-# Reference Material {.tabset .tabset-fade}
+## Methods {#methods-1}
+
+
+```{r}
+
+
+```
+
+
+##Modeling, Visualization and Analysis
+
+The modeling and visualization elements are developed and maintained in the data medium determined in the *project charter*.  The following methodology is applied:
+
+*	Document key variables derived from source dataset in the [data dictionary](#data_dict) (copy from DSR_Framework if needed).
+*	Evaluate algorithms or statistical models developed (as necessary)
+*	Develop visualizations and additional output, as defined
+*	Draft report / output and review with Project Sponsor and Project Manager
 
 ##About this Document {#about_doc}
 
@@ -144,24 +135,6 @@ if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table o
 
 ---
 
-
-## Methods {#methods-1}
-
-
-```{r}
-
-
-```
-
-## Outliers 
-
-
-```{r}
-
-
-```
-
-
 ##Reviewer Credits {#Creds}
 
 This analysis has benefited from the collaboration, dedication and review of various members of the **INSERT ORG. HERE**.  Special thanks to:
@@ -180,13 +153,9 @@ This analysis has benefited from the collaboration, dedication and review of var
 ---
 
 
-
-
-
-#
 <br>
 <br>
-End of document
+EndNotes
 <br>
 <br>
 <br>
@@ -194,7 +163,7 @@ End of document
 
 
 
-[comment]: # formatting keeps html andword happy in same template
+<!-- [comment]: # formatting keeps html andword happy in same template -->
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]

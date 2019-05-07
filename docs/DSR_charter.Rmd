@@ -12,24 +12,16 @@ output:
   pdf_document: default
 ---
 ```{r setup, warning = F, message = F, echo=FALSE}
-
-knitr::opts_chunk$set(
-
-  echo = F, warning = F, message = F
-
-)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
 ```
 
 ```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Possibly needed: Data preparation tools
-library(tidyverse); library(tibble)
-
-#Possibly needed for interacting with data sources
-#library(DBI);library(odbc);library(feather)
+library(tidyverse); library(tibble);library(feather)
+#read in data
 
 ```
-
-
+<!--formatting keeps html andword happy in same template, works when knitting -->
 ```{r results='hide'}
 #this works but only when you knit the report because it needs an input
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
@@ -38,7 +30,7 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 ```
 
-
+<!-- #DOCUMENT BEGIN -->
 
 **Purpose:**
 
@@ -259,9 +251,21 @@ if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table o
 `r AboutMore`
 
 
+##Reviewer Credits {#Creds}
+
+This analysis has benefited from the collaboration, dedication and review of various members of the **INSERT ORG. HERE**.  Special thanks to:
 
 
-#
+- *SPARTY*, for being awesome
+
+- *Jason*, for loving SPARTY too
+
+- *Josh*, for hiring me and paying me to talk about sparty in order to make a template
+
+- *Jenna*, for liking hockey; an awesome sport that was not covered in this paper 
+
+
+
 <br>
 EndNotes
 <br>

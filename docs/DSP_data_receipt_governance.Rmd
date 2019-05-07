@@ -19,18 +19,15 @@ output:
 ---
 
 ```{r setup, warning = F, message = F, include=FALSE, echo=FALSE}
-
-knitr::opts_chunk$set(
-
-  echo = F, warning = F, message = F
-
-)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
 ```
 
 ```{r load}
 
-```
+# Read in processed dataset 
 
+```
+<!--formatting keeps html andword happy in same template, works when knitting -->
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
@@ -38,7 +35,7 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 ```
 
-
+<!-- #DOCUMENT BEGIN -->
 
 
 **Purpose:**

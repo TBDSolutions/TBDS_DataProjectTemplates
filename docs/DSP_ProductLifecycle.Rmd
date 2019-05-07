@@ -10,7 +10,7 @@ output:
     toc_depth: 2
   github_document: default
   word_document:
-    reference_docx: ../www/word_style_temp_1.docx
+    reference_docx: "../www/word_style_temp_1.docx"
     toc: yes
     toc_depth: 2
   pdf_document: default
@@ -18,20 +18,16 @@ output:
 ---
 
 
-[comment]: #Knit setup
 ```{r setup, warning = F, message = F, include=FALSE, echo=FALSE}
-
-knitr::opts_chunk$set(
-
-  echo = F, warning = F, message = F
-
-)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
 ```
-[comment]:#knit package and data file loading
+
 ```{r load}
 
+# Read in processed dataset 
+
 ```
-[comment]: # formatting keeps html andword happy in same template
+<!--formatting keeps html andword happy in same template, works when knitting -->
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
@@ -39,17 +35,14 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 ```
 
+<!-- #DOCUMENT BEGIN -->
 
-[comment]:#DOCUMENT BEGIN
-
-#
 
 
 **Purpose:**
 To provide an *reference* for **product lifecycle** related processes and practices for the TBD Solutions data science team.  This document is not intended to be "filled-out" like a template; only referenced. See the [Data Science Document Guide](#dsdg) for more on information on data science team documents.
 
 <br>
-
 
 
 #Data Science Products:
@@ -137,7 +130,6 @@ DST_                    | Data Science Template, formatting template for any put
 ---
 
 
-#
 <br>
 <br>
 <br>
