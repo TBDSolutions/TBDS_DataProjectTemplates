@@ -1,9 +1,12 @@
-## scrub.feather - file for removing PHI from all data sets and combining to make master.feather
+#scrub_feather_DATASET.R
+
+## scrub.feather - file for removing PHI from all data sets, "feather tag indicates this makes a feather"
+
 #General Order of Hierarchy
 #1. read
-#2. prep_
+#2. clean
 #3. scrub
-#4. scrubd_prep
+#4. scrubd_clean
 #5. scrubd
 
 
