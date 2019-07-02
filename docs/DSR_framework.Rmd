@@ -12,8 +12,7 @@ output:
     toc_depth: 2
   pdf_document: default
 ---
-```{r setup, warning = F, message = F, echo=FALSE}
-knitr::opts_chunk$set(echo = F, warning = F, message = F)
+,
 ```
 
 ```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}

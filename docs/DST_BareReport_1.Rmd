@@ -105,7 +105,7 @@ The modeling and visualization elements are developed and maintained in the data
 Users of this document can interact with any of the data visualizations provided in this supplement.  Below is a list of the primary ways that each of the data displays can be used:
 
 
-[comment]: # formatting keeps html andword happy in same template
+<!--[comment]: # formatting keeps html andword happy in same template -->
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
