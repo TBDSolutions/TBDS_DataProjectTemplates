@@ -17,11 +17,11 @@ knitr::opts_chunk$set(echo = F, warning = F, message = F)
 
 ```{r load, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Possibly needed: Data preparation tools
-library(tidyverse); library(tibble);library(feather)
+library(tidyverse);library(arrow)
 #read in data
 
 ```
-<!--formatting keeps html andword happy in same template, works when knitting -->
+
 ```{r results='hide'}
 #this works but only when you knit the report because it needs an input
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
@@ -32,182 +32,87 @@ if("html_document" %in% OutType){Intractv = "interactive"}else(Intractv='')
 
 <!-- #DOCUMENT BEGIN -->
 
-**Purpose:**
+# Business Background
 
-TBD Solutions follows the *CRISP-DM*^[The CRISP-DM process is an iterative methodology that is widely accepted by the data science community.  TBDS follows the [Microsoft Azure proposed methodology](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/overview).] process for data analysis projects and this report provides a place to document these steps and their outcomes.  This report serves as a framework for the collaborative process of drafting a project charter with TBDS clients.  TBDS follows the project charter methodology proposed by Azure^[The [Microsoft Azure Project Charter](https://github.com/Azure/Azure-TDSP-ProjectTemplate/blob/master/Docs/Project/Charter.md) methodology is a framework for collecting background information and documenting project requirements and expected outcomes.].  The project charter is a key part of the *Business Understanding* phase of the *CRISP-DM* process.  
+## Client/Business Domain
 
-**Report Layout:**
+## What business problems are we trying to address?
 
-The *Appendix* section of this report contains more detailed information regarding how to use this `r Intractv` report in the [About Document](#about_doc) section.  
+---
 
+# Metrics
 
+## What are the qualitative objectives? 
 
+## What are the quantifiable metrics?
 
-#**Business Understanding**  
+## Target Improvement
 
-Q/A with the Client: These will iterate to produce a shared **Business Understanding**  <br>
-**Terms:**  <br>
+## What is the baseline (current) value of the metric? 
 
-* Business Problem (BP)
-* Business Requirement (BR) 
-* Business Solution (BS)
+---
 
+# Output
 
-##Client/Business Domain 
+## How will the analysis be used?
 
-* Notes about the client's purpose for conducting business and overview of their goals
+Initial requests from project stakeholders include:
 
-##Idenify the Business Problem(s)
+```{r}
+tribble(
+  ~`As a...`, ~`I want to know...`, ~`So I can...`,
+  "",         "",                   "",
+  "",         "",                   "",
+  "",         "",                   "",
+  "",         "",                   ""
+) %>%
+knitr::kable(caption = "What do stakeholders want from the analysis?")
+```
 
+## Scope of analysis/data products:
 
-* PB-1:  
-* PB-2:
-* PB-3: 
+- What solutions are we trying to build?
+- What will we do?
+- How is it going to be used by the customer?
 
-##Business' Requirements for Solution: 
+---
 
-### Business Need/Purpose
+# Plan
 
-| As a...   | I want to know...  | So I can...   |
-|:----------|:-------------------|:--------------| 
-| Admin     |Data measure        | Action        |
-| Manager   |Data measure        | Action        |
-| CFO       |Data measure        | Action        |
+## Define objectives and required output
 
+## Data Acquisition & Understanding
 
+## Modeling, Visualization and Analysis
 
-### Requirements Mapping 
+## Review & Acceptance
 
-*All PB's must be mapped or stated as out of scope* <br>
+## Project Management
 
+---
 
+# Architecture
 
-| BR-ID     | Requiment          | PB-ID(s)      |
-|:----------|:-------------------|:--------------| 
-|           |                    |  PB-1,PB-2    |
-|           |                    |               |
-|           |                    |               |
+## Data Elements
 
+The following data elements are an initial, high-level list of data elements that would be needed to begin constructing the metrics listed above.  Their names do not reflect actual column names or data sources: 
 
+## Data Sources
 
-#**Project Scope **
+Data for the above types will be coming from the following sources:
 
-Items that are explicitly in scope: <br>
+- e.g. Azure SQL Server database
+- e.g. Public data repositories
 
-* Item 1
-* Item 2
+## Data Movement
 
-Item(s) that are explicitly out of scope: <br>
+Data will be copied from on TSA's from on-premises MS Access databases to TBDS' SQL Server using secure FTP or other data movement tools.  
 
-* Item 1
-* Item 2
+## Tools and data storage/analytics resources
 
-
-#**Identify Data Sources**
-
-The following data sources will be used to solve the problem outlined above.
-
-## Define the Datasets
-| Dataset Name  | Access Process         | Dataset Definition  |  Update Frequency |
-|:--------------|:-----------------------|:--------------------|:------------------| 
-|               |                        |                     |                   |
-|               |                        |                     |                   |
-|               |                        |                     |                   |
-
-
-#**Project Deliverables**  {#actplov}
-
-
-*All PB's must be mapped or stated as out of scope*
-
-| BS-ID  | Solution Description  | How will the customer use this   | BR-IS(s)   | 
-|:-------|:----------------------|:---------------------------------|:-----------| 
-|        |                       |                                  |            | 
-|        |                       |                                  |            | 
-|        |                       |                                  |            | 
-|        |                       |                                  |            | 
-
-
-
-
-##**Measures of Success**
-
-###Qualitative:
-
-Qualitative Measures (QL)
-
-| QL-ID     | Name       | Description   |
-|:----------|:------------|:--------------| 
-|           |             |               |
-|           |             |               |
-|           |             |               |
-
-
-###Quanitative:
-
-Quantitative Measures (QL) [comment]:(All QL's must be mapped)
-
-| QN-ID     | Name        | Description   | QL-ID(s)    |
-|:----------|:------------|:--------------| :-----------|
-|           |             |               |             |
-|           |             |               |             |
-|           |             |               |             |
-
-
-
-##**Target outputs**:
-
-
-*What is the best data approach and target "meduim"; what do they need to make their decisions?*
-
-Notes from client on which will best fit:
-
-###Questions:
-
-*How often will this output be needed? (e.g. once, monthly, yearly?)
-*Do you need to see the data in several ways to make your decisions?
-*Do you need to be able to filter and drill-in?
-
-
-
-###Decision: 
-
-
-* Which medium chosen from **DSP_ProductLifecycle** and why?
-
-
-#**Project Roles** {#ProjectRoles}
-
-|R (Responsible) | A (Accountable)  | S (Supports )  |  C (Consulted)  | I (Informed)  |
-|:---------------|:-----------------|:---------------|:----------------| :-------------|
-|                |                  |                |                 |               |
-|                |                  |                |                 |               |
-|                |                  |                |                 |               |
-
-
-####Core Team
-
-Define what core team means for this project, who they are and what they are responsible for in the table above
-* NAME: *Title/Role*
-
-
-<br>
-
-####Client Subject Matter Experts
-* NAME: *Title/Role*
- 
-
-<br>
-
-####TBD Solutions
-* Project Lead: *Josh Hagedorn*
-* Data Scientist(s): *Josh Hagedorn*
-
-<br>
-
-##**Communication Format**
-* Weekly Scrum meetings between client and TBDS *Project Core Team*
-
+- Filezilla FTP for secure file transfer
+- SQL Server 2016 for data storage and querying
+- R for data cleaning, feature construction, aggregation and sampling
 
 
 <br>
@@ -218,51 +123,51 @@ Define what core team means for this project, who they are and what they are res
 
 # Appendix {#app}
 
-##About this Document {#about_doc}
+## About this Document {#about_doc}
 
-Users of this document can interact with any of the data visualizations provided in this supplement.  Below is a list of the primary ways that each of the data displays can be used:
+**Approach:**  TBD Solutions follows a version of the *CRISP-DM*^[The CRISP-DM process is an iterative methodology that is widely accepted by the data science community.  This report provides a place to document the various steps and their outcomes.  This report serves as a framework for the collaborative process of drafting a project charter with client organizations.  
 
-
+**Report Layout:**  Users of this document can interact with any of the data visualizations provided in this supplement.  Below is a list of the primary ways that each of the data displays can be used:
 
 ```{r results='hide'}
 OutList <- rmarkdown::all_output_formats(knitr::current_input())
 OutType <- OutList[1]
-if("html_document" %in% OutType){AboutMore = '**Table of Contents:** The table of contents at the left side of the document can be used to navigate throughout the document.  When the user selects a section of the table of contents, the subsections will expand to allow for detailed selection of the portion of document that a user wishes to investigate.
-
-
+if("html_document" %in% OutType){
+AboutMore = '**Table of Contents:** The table of contents at the left side of the document can be used to navigate throughout the document.  When the user selects a section of the table of contents, the subsections will expand to allow for detailed selection of the portion of document that a user wishes to investigate.
 
 **Tables:**  Tables of data can be sorted based on the values in any of their columns.  When a table contains many values, it can be expanded or truncated to show a certain number of rows at a time.  In some cases, tables can be filtered based on the values in their columns.
 
-
-
 **Charts:**  Charts can be interacted with in any of the following ways:
 
-
-
 - *Filtering* out specific categories by selecting/deselecting those items in the chart legend
-
 - *Hovering* over a chart element to see a description of the data represented
-
 - *Highlighting* a certain portion of a chart to zoom in
-
-- *Saving* a screenshot of a given chart'}else(AboutMore='')
+- *Saving* a screenshot of a given chart'
+} else(AboutMore = '')
 
 ```
 `r AboutMore`
 
 
-##Reviewer Credits {#Creds}
+## Reviewer Credits {#creds}
 
 This analysis has benefited from the collaboration, dedication and review of various members of the **INSERT ORG. HERE**.  Special thanks to:
 
+# Project Team
 
-- *SPARTY*, for being awesome
+Who is working on this project:
 
-- *Jason*, for loving SPARTY too
+## Client Project Contributors:
 
-- *Josh*, for hiring me and paying me to talk about sparty in order to make a template
+- *Project Manager:* 
+- *Project Sponsor:* 
+- *Other subject-matter experts:*
 
-- *Jenna*, for liking hockey; an awesome sport that was not covered in this paper 
+## TBD Solutions:
+
+- *Project Lead:* 
+- *Data scientist(s):* 
+- *Other resources:* 
 
 
 
