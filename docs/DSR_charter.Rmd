@@ -148,6 +148,14 @@ AboutMore = '**Table of Contents:** The table of contents at the left side of th
 ```
 `r AboutMore`
 
+## Data Limitations
+We performed a limited review of the data used directly in our analysis for reasonableness and consistency and have not found material defects in the data. If there are material defects in the data, it is possible that they would be uncovered by a detailed, systematic review and comparison of the data to search for data values that are questionable or for relationships that are materially inconsistent. Such a review was beyond the scope of our assignment.
+
+Differences between our projections and actual amounts depend on the extent to which future experience conforms to the assumptions made for this analysis. It is certain that actual experience will not conform exactly to the assumptions used in this analysis. Actual amounts will differ from projected amounts to the extent that actual experience deviates from expected experience
+
+In performing this work, we relied on data and information provided by the client and their contracted entities as well as information from publicly available sources. We have not audited or verified this data and information. If the underlying data or information is inaccurate or incomplete, the results of our assessment may likewise be inaccurate or incomplete. This work is not complete. 
+
+Final results and suggested changes may vary significantly from this draft document  based  on  additional  findings  and  information  gathering.  This  report is for  discussion purposes only. They should not be relied upon without benefit of the discussion that accompanied them.
 
 ## Reviewer Credits {#creds}
 
